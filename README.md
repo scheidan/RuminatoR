@@ -10,14 +10,14 @@ This is a reimplementation based on Scheidegger (2008).
 
 1. Install [R](https://cloud.r-project.org/) and [R-Studio](https://www.rstudio.com/products/RStudio/) (or any other editor).
 
-2. Install `devtools` (type in the R command line)
+2. Install `remotes` (type in the R command line)
 ```
-install.packages("devtools")
+install.packages("remotes")
 ```
 
 3. Install RuminatoR (type in the R command line)
 ```
-library(devtools)
+library(remotes)
 install_github("scheidan/RuminatoR")
 ```
 
