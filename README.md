@@ -1,11 +1,9 @@
 # RuminatoR - an R package to classify feeding behavior of ruminants
 
-`RuminatoR` allows to classify different behaviours of cows and other
+`RuminatoR` allows to classify different behaviors of cows and other
 ruminants based on pressure signals measured in the headcollar.
 
-This is a reimplementation \ based on Scheidegger (2008).
-
-## Installation
+This is a reimplementation based on Scheidegger (2008).
 
 
 ## Installation
@@ -25,38 +23,32 @@ install_github("scheidan/RuminatoR")
 
 ## Usage
 
-TODO
+... TODO ...
 
 ```R
 library(RuminatoR)
-library(ggplot2)
+library(ggplot2)  # optional, only for visualization
 
 ## --------------------------
 ## 1) train classifier
-
 
 rf.classifier <- train(data.training)
 
 ## ---------------------------------
 ## 2) apply classifier to new data
 
-
 dat.class <- classify(rf.classifier, new.data,
                       max.dt.peak = 30, min.n.peaks = 2)
 
 head(dat.class)
-
 table(dat.class$activity)
-
 
 ## -----------
 ## 3) visualize result
 
-
 ## color line
 ggplot(dat.class, aes(x=time, y=pressure, color=activity)) +
     geom_path(aes(group=1))
-
 
 ## color background
 ggplot(dat.class) +
