@@ -32,13 +32,14 @@ library(ggplot2)  # optional, only for visualization
 ## --------------------------
 ## 1) train classifier
 
-rf.classifier <- train(data.training)
+rf.classifier <- train(data.training,
+                       min.amplitude=30, min.dt=6)
 
 ## ---------------------------------
 ## 2) apply classifier to new data
 
 dat.class <- classify(rf.classifier, new.data,
-                      max.dt.peak = 30, min.n.peaks = 2)
+                      max.dt.peak = 30, min.n.peaks = 10)
 
 head(dat.class)
 table(dat.class$activity)
