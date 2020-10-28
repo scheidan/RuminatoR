@@ -10,6 +10,7 @@ Authors@R:
 Description: Analyze feeding behavior of ruminants based on pressor signals.
 License: GPL-3
 Encoding: UTF-8
+Depends: randomForest
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
