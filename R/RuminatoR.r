@@ -7,6 +7,7 @@
 
 
 ##' @import randomForest
+##' @importFrom stats mad median na.omit predict runmed sd
 NULL
 
 ##' RuminatoR - analyze the feeding behavior of ruminates
@@ -19,9 +20,10 @@ NULL
 NULL
 
 
-##' @title Identify indices of peaks
-##' 
-##' @param minimal.amplitude  minimal amplitude to count as peak
+##' @title Identify peaks in time series
+##'
+##' @param pressure time series of pressure data
+##' @param min.amplitude  minimal amplitude to count as peak
 ##' @param min.dt minimal time difference between peaks
 ##' @return a vector of the indicies of the peaks
 identify.peaks <- function(pressure, min.amplitude=30, min.dt=6){
@@ -57,7 +59,7 @@ identify.peaks <- function(pressure, min.amplitude=30, min.dt=6){
 ##' 
 ##' @param data data.frame wite a columns pressure
 ##' @param prediction if FALSE, the obeserved activities are added to the output 
-##' @param minimal.amplitude  minimal amplitude to count as peak
+##' @param min.amplitude  minimal amplitude to count as peak
 ##' @param min.dt minimal time difference between peaks
 ##' @return a list with the statistics of the peaks, and the time points
 compute.statistics <- function(data, prediction=FALSE,
@@ -116,13 +118,13 @@ compute.statistics <- function(data, prediction=FALSE,
 ##' @title Train Random Forest
 ##' 
 ##' @param data A \code{data.frame} wite a columns \code{time}, \code{pressure}, and \code{activity}
-##' @param minimal.amplitude  minimal amplitude to count as peak
+##' @param min.amplitude  minimal amplitude to count as peak
 ##' @param min.dt minimal time difference between peaks
 ##' @param ... arguments passed to \code{randomForest}
 ##' @return list of with trained randomForest and the parameters used.
 ##' @author Andreas Scheidegger
 ##' @export
-train.RF <- function(data, min.amplitude=30, min.dt=6, ...){
+train <- function(data, min.amplitude=30, min.dt=6, ...){
 
     if(!all(c("time", "pressure", "activity") %in% colnames(data))){
         stop("Training data must have columns 'time', 'pressure', and 'activity'!")
@@ -143,7 +145,7 @@ val.most <- function(a) {
     ta <- table(a)
     b <- which(ta == max(ta))
 
-    ## if mulitble iwth smae frequencey, choos random
+    ## if mulitble with same frequencey, choose one randomly
     if (length (b) > 1) {
         b <- sample(b, 1)
     }
@@ -185,14 +187,14 @@ group.peaks <- function(peaks,
 ##'
 ##' @param RF a trained random forest
 ##' @param newdata data.frame wite a columns \code{time}, and \code{pressure}
-##' @param max.dt.peaks:  maximal time difference between two peaks in the same group
-##' @param min.n.peaks:  minimal number of peaks to count as group
+##' @param max.dt.peaks  maximal time difference between two peaks in the same group
+##' @param min.n.peaks  minimal number of peaks to count as activity group
 ##' @return A \code{data.frame} with additional column of the classfied activities
 ##' @author Andreas Scheidegger
 ##' @export
-classify <- function(RF, newdata, max.dt.peak = 30, min.n.peaks = 10){
+classify <- function(RF, newdata, max.dt.peaks = 30, min.n.peaks = 10){
 
-    if(!all(c("time", "pressure") %in% colnames(data))){
+    if(!all(c("time", "pressure") %in% colnames(newdata))){
         stop("Data must have columns 'time' and 'pressure'!")
     }
 
@@ -201,7 +203,7 @@ classify <- function(RF, newdata, max.dt.peak = 30, min.n.peaks = 10){
     peaks <- identify.peaks(newdata$pressure)
 
     ## -- group peaks
-    groups <- group.peaks(peaks, max.dt.peak = max.dt.peak,
+    groups <- group.peaks(peaks, max.dt.peaks = max.dt.peaks,
                           min.n.peaks = min.n.peaks)
     
     ## -- compute statistics

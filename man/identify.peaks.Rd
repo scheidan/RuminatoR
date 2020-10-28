@@ -2,18 +2,20 @@
 % Please edit documentation in R/RuminatoR.r
 \name{identify.peaks}
 \alias{identify.peaks}
-\title{Identify indices of peaks}
+\title{Identify peaks in time series}
 \usage{
 \method{identify}{peaks}(pressure, min.amplitude = 30, min.dt = 6)
 }
 \arguments{
-\item{min.dt}{minimal time difference between peaks}
+\item{pressure}{time series of pressure data}
 
-\item{minimal.amplitude}{minimal amplitude to count as peak}
+\item{min.amplitude}{minimal amplitude to count as peak}
+
+\item{min.dt}{minimal time difference between peaks}
 }
 \value{
 a vector of the indicies of the peaks
 }
 \description{
-Identify indices of peaks
+Identify peaks in time series
 }

@@ -11,9 +11,9 @@ compute.statistics(data, prediction = FALSE, min.amplitude = 30, min.dt = 6)
 
 \item{prediction}{if FALSE, the obeserved activities are added to the output}
 
-\item{min.dt}{minimal time difference between peaks}
+\item{min.amplitude}{minimal amplitude to count as peak}
 
-\item{minimal.amplitude}{minimal amplitude to count as peak}
+\item{min.dt}{minimal time difference between peaks}
 }
 \value{
 a list with the statistics of the peaks, and the time points

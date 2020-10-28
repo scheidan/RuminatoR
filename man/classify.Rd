@@ -4,16 +4,16 @@
 \alias{classify}
 \title{Classify pressure time series}
 \usage{
-classify(RF, newdata, max.dt.peak = 30, min.n.peaks = 10)
+classify(RF, newdata, max.dt.peaks = 30, min.n.peaks = 10)
 }
 \arguments{
 \item{RF}{a trained random forest}
 
 \item{newdata}{data.frame wite a columns \code{time}, and \code{pressure}}
 
-\item{max.dt.peaks:}{maximal time difference between two peaks in the same group}
+\item{max.dt.peaks}{maximal time difference between two peaks in the same group}
 
-\item{min.n.peaks:}{minimal number of peaks to count as group}
+\item{min.n.peaks}{minimal number of peaks to count as activity group}
 }
 \value{
 A \code{data.frame} with additional column of the classfied activities
