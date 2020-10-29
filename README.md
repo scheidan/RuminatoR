@@ -15,7 +15,7 @@ This is a reimplementation based on Scheidegger (2008).
 install.packages("remotes")
 ```
 
-3. Install RuminatoR (type in the R command line)
+3. Install `RuminatoR` (type in the R command line)
 ```
 library(remotes)
 install_github("scheidan/RuminatoR")
@@ -24,6 +24,8 @@ install_github("scheidan/RuminatoR")
 ## Usage
 
 ... TODO ...
+
+You can get help in R with `?train` or `?classify`.
 
 ```R
 library(RuminatoR)
