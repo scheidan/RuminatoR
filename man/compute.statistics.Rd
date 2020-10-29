@@ -4,7 +4,7 @@
 \alias{compute.statistics}
 \title{Compute the statistics for classification}
 \usage{
-compute.statistics(data, prediction = FALSE, min.amplitude = 30, min.dt = 6)
+\method{compute}{statistics}(data, prediction = FALSE, min.amplitude = 30, min.dt = 6)
 }
 \arguments{
 \item{data}{data.frame wite a columns pressure}

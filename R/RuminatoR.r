@@ -129,6 +129,8 @@ train <- function(data, min.amplitude=30, min.dt=6, ...){
     if(!all(c("time", "pressure", "activity") %in% colnames(data))){
         stop("Training data must have columns 'time', 'pressure', and 'activity'!")
     }
+
+    data$activity <- as.factor(data$activity)
     
     ## compute statistics
     dd <- compute.statistics(data, prediction=FALSE, min.amplitude=30, min.dt=6)
@@ -225,18 +227,18 @@ classify <- function(RF, newdata, max.dt.peaks = 30, min.n.peaks = 10){
     }
 
     ## -- map predictions to time series
-    newdata$activity <- NA
+    newdata$activity.predicted <- NA
     
     for (g in 1:max(groups, na.rm=TRUE)) {
         idx <- which(groups == g)
         if(length(idx) > 0) {
             t.start <- peaks[min(idx)]
             t.end <- peaks[max(idx)]
-            newdata$activity[t.start:t.end] <- as.character(activity[min(idx)])
+            newdata$activity.predicted[t.start:t.end] <- as.character(activity[min(idx)])
         }
     }
 
-    newdata$activity <- as.factor(newdata$activity)
+    newdata$activity.predicted <- as.factor(newdata$activity.predicted)
    
     ## return data frame with activity
     newdata
