@@ -44,13 +44,13 @@ dat.class <- classify(rf.classifier, new.data,
                       max.dt.peak = 30, min.n.peaks = 10)
 
 head(dat.class)
-table(dat.class$activity)
+table(dat.class$activity.predicted)
 
 ## -----------
 ## 3) visualize result
 
 ## color line
-ggplot(dat.class, aes(x=time, y=pressure, color=activity)) +
+ggplot(dat.class, aes(x=time, y=pressure, color=activity.predicted)) +
     geom_path(aes(group=1))
 
 ## color background
@@ -59,7 +59,7 @@ ggplot(dat.class) +
     geom_rect(aes(NULL, NULL,
                   xmin=time-0.5, xmax=time+0.5,
                   ymin=-Inf, ymax=Inf,
-                  fill=activity)) +
+                  fill=activity.predicted)) +
     ## add pressure
     geom_path(aes(x=time, y=pressure))
 ```
