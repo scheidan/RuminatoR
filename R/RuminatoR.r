@@ -121,7 +121,7 @@ compute.statistics <- function(data, prediction=FALSE,
 ##' @param min.amplitude  minimal amplitude to count as peak
 ##' @param min.dt minimal time difference between peaks
 ##' @param ... arguments passed to \code{randomForest}
-##' @return list of with trained randomForest and the parameters used.
+##' @return list with the trained randomForest and the parameters used.
 ##' @author Andreas Scheidegger
 ##' @export
 train <- function(data, min.amplitude=30, min.dt=6, ...){
@@ -133,7 +133,8 @@ train <- function(data, min.amplitude=30, min.dt=6, ...){
     data$activity <- as.factor(data$activity)
     
     ## compute statistics
-    dd <- compute.statistics(data, prediction=FALSE, min.amplitude=30, min.dt=6)
+    dd <- compute.statistics(data, prediction=FALSE,
+                             min.amplitude=min.amplitude , min.dt=min.dt)
 
     ## train
     list(classifier = randomForest::randomForest(x=dd$X, y=dd$activity, ...),

@@ -16,7 +16,7 @@ train(data, min.amplitude = 30, min.dt = 6, ...)
 \item{...}{arguments passed to \code{randomForest}}
 }
 \value{
-list of with trained randomForest and the parameters used.
+list with the trained randomForest and the parameters used.
 }
 \description{
 Train Random Forest
