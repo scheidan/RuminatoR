@@ -23,9 +23,24 @@ install_github("scheidan/RuminatoR")
 
 ## Usage
 
-... TODO ...
-
 You can get help in R with `?train` or `?classify`.
+
+### Example
+
+We assume the data are available as dataframes in the following structure:
+```R
+head(trainings.data)
+                 time pressure   activity
+1 2008-09-04 20:34:50   1076.8 ruminating
+2 2008-09-04 20:34:50   1043.6 ruminating
+3 2008-09-04 20:34:50   1029.1 ruminating
+
+head(new.data)
+                 time pressure
+1 2008-09-04 06:59:59   1085.4
+2 2008-09-04 06:59:59   1069.1
+3 2008-09-04 06:59:59   1049.8
+```
 
 ```R
 library(RuminatoR)
