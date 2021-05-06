@@ -77,11 +77,12 @@ compute.statistics <- function(data, prediction=FALSE,
 
     for (i in 31:(length(dt.peak)-31)) {
 
-        ## Mean and median of time difference
+        ## -- statistics about the last / next 30 peaks --
+        ## Mean and median of time difference of peaks
         stats[i,1] <- mean(dt.peak[(i-20):(i+20)])
         stats[i,2] <- median(dt.peak[(i-20):(i+20)])
 
-        ## MAD and sd of time difference
+        ## MAD and sd of time difference of peaks
         stats[i,3] <- mad(dt.peak[(i-20):(i+20)])
         stats[i,4] <- sd(dt.peak[(i-20):(i+20)])
 
@@ -93,13 +94,14 @@ compute.statistics <- function(data, prediction=FALSE,
         stats[i,7] <- mad(dt.peak[(i-20):i])
         stats[i,8] <- sd(dt.peak[(i-20):i])
 
-        ## maximum time difference
+        ## maximum time difference of peaks
         stats[i,9] <- max(dt.peak[(i-30):(i+30)])
 
         ## MAD and sd of peak pressure
         stats[i,10] <- mad(data$pressure[peaks[(i-20):(i+20)]])
         stats[i,11] <- sd(data$pressure[peaks[(i-20):(i+20)]])
 
+        ## -- statistics about the last / next 30 peaks --
         ## MAD and sd of pressures +/- 10 sek, Mad.pressure
         stats[i,12] <- mad(data$pressure[(peaks[i]-100):(peaks[i]+100)])
         stats[i,13] <- sd(data$pressure[(peaks[i]-100):(peaks[i]+100)])
