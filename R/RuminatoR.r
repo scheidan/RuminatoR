@@ -86,11 +86,11 @@ compute.statistics <- function(data, prediction=FALSE,
         stats[i,3] <- mad(dt.peak[(i-20):(i+20)])
         stats[i,4] <- sd(dt.peak[(i-20):(i+20)])
 
-        ## MAD and sd of future time difference, Mad.dt.peak.z
+        ## MAD and sd of future time difference
         stats[i,5] <- mad(dt.peak[i:(i+20)])
         stats[i,6] <- sd(dt.peak[i:(i+20)])
 
-        ## MAD and sd of past time difference, Mad.dt.peak.v
+        ## MAD and sd of past time difference
         stats[i,7] <- mad(dt.peak[(i-20):i])
         stats[i,8] <- sd(dt.peak[(i-20):i])
 
@@ -101,8 +101,8 @@ compute.statistics <- function(data, prediction=FALSE,
         stats[i,10] <- mad(data$pressure[peaks[(i-20):(i+20)]])
         stats[i,11] <- sd(data$pressure[peaks[(i-20):(i+20)]])
 
-        ## -- statistics about the last / next 30 peaks --
-        ## MAD and sd of pressures +/- 10 sek, Mad.pressure
+        ## -- statistics of the pressure time series +/- 10 sek.
+        ## MAD and sd of pressures
         stats[i,12] <- mad(data$pressure[(peaks[i]-100):(peaks[i]+100)])
         stats[i,13] <- sd(data$pressure[(peaks[i]-100):(peaks[i]+100)])
     }
